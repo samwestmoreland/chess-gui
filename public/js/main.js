@@ -1,8 +1,8 @@
 // Import the Chessboard.js library
-const Chessboard = require('@chrisoakman/chessboardjs/dist/chessboard-1.0.0.min.js');
+const Chessboard2 = require('@chrisoakman/chessboard2/dist/chessboard2.min.js');
 
 // Initialize the chessboard
-const board = Chessboard('board', 'start');
+const board = Chessboard2('myBoard')
 
 // Example: Add an event listener to handle moves
 board.on('square_click', (square) => {
