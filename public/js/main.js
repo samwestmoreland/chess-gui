@@ -1,5 +1,5 @@
 // Import the Chessboard.js library
-import Chessboard from 'path/to/chessboard.js';
+const Chessboard = require('@chrisoakman/chessboardjs/dist/chessboard-1.0.0.min.js');
 
 // Initialize the chessboard
 const board = Chessboard('board', 'start');

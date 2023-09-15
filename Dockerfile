@@ -1,20 +1,20 @@
 # Use an official Node.js runtime as a parent image
 FROM node:14
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+# Set the working directory to /app
+WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install project dependencies
+# Install any needed packages specified in package.json
 RUN npm install
 
-# Copy the rest of the application code
+# Copy all local files to the container
 COPY . .
 
-# Expose the port your application will run on (e.g., 8080)
-EXPOSE 8080
+# Make port 80 available to the world outside this container
+EXPOSE 80
 
-# Define the command to start your application
-CMD ["npm", "start"]
+# Define the command to run your TypeScript app
+CMD [ "node", "public/js/main.js" ]
