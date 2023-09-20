@@ -1,17 +1,29 @@
-// Import the Chessboard.js library
-import { Chessboard2 } from "@chrisoakman/chessboard2/dist/chessboard2.min.js";
+var board = Chessboard('myBoard', {
+  draggable: true,
+  moveSpeed: 'medium',
+  snapbackSpeed: 500,
+  snapSpeed: 100,
+  position: 'start',
+  pieceTheme: 'img/chesspieces/wikipedia/{piece}.png',
+  onDrop: onDrop
+})
 
-const board = Chessboard2('board2', 'start')
+function flip() {
+  console.log("current orientation", board.orientation())
+  white = board.orientation() == 'white'
+  if (!white) {
+    board.orientation('white')
+  } else {
+    board.draggable = false
+    board.orientation('black')
+  }
 
-window.setTimeout(makeRandomMove, 500)
-
-function makeRandomMove () {
-  if (game.game_over()) return
-
-  const legalMoves = game.moves()
-  const randomIdx = Math.floor(Math.random() * legalMoves.length)
-  game.move(legalMoves[randomIdx])
-  board.position(game.fen())
-
-  window.setTimeout(makeRandomMove, 500)
+  $.get('/flip', {'white': !white}, function(response) {
+    r = JSON.parse(response)
+    console.log(r.fen)
+    console.log(r.message)
+    board.position(r.fen)
+    board.draggable = true
+    $( "#message" ).text(r.message)
+  });
 }

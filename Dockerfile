@@ -1,20 +1,11 @@
-# Use an official Node.js runtime as a parent image
-FROM node:14
+# Use an official web server image as the base image
+FROM nginx:latest
 
-# Set the working directory to /app
-WORKDIR /app
+# Copy your index.html file to the default web server directory
+COPY public/ /usr/share/nginx/html
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-
-# Install any needed packages specified in package.json
-RUN npm install
-
-# Copy all local files to the container
-COPY . .
-
-# Make port 80 available to the world outside this container
+# Expose port 80 for HTTP traffic
 EXPOSE 80
 
-# Define the command to run your TypeScript app
-CMD [ "node", "public/js/main.js" ]
+# Start the web server when the container runs
+CMD ["nginx", "-g", "daemon off;"]

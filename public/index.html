@@ -1,22 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Chess GUI</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Play against engine</title>
+  <link rel="stylesheet"
+      href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
+      integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
+      crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
+        integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
+        crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <h1>Chess GUI</h1>
-    </header>
-    <main>
-        <div class="chessboard-container">
-            <div id="myBoard" style="width: 400px;"></div>
-        </div>
-    </main>
-    <footer>
-        <p>Powered by Chess Engine (e.g., Stockfish)</p>
-    </footer>
+<div id="main">
+  <div id="myBoard" style="width: 600px"></div>
+  <div id="button_div">
+    <button onclick="flip()" id="flip">Flip Board</button>
+    <button id="undo" onclick="undo()">Undo Move</button>
+    <button onclick="printGame()" id="new_black">Print Game</button>
+  </div>
+  <div id="button_div">
+    <button onclick="newGame(true)" id="new_white">New Game As White</button>
+    <button onclick="newGame(false)" id="new_black">New Game As Black</button>
+  </div>
+  <div id="button_div">
+    <input type="text" style="width:400px" id="fen_input">
+    <button onclick="loadFen()">Load FEN</button>
+  </div>
+</div>
+  <p id="message"></p>
+<script src="js/main.js"></script>
 </body>
 </html>
